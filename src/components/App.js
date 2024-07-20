@@ -1,9 +1,12 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import PageNotFound from './pages/PageNotFound';
+
 import ProtectedRoute from './features/auth/ProtectedRoute';
+
+import AppLayout from './layouts/AppLayout';
+
+import PageNotFound from './pages/PageNotFound';
 import Welcome from './pages/Welcome';
 import DashBoard from './pages/DashBoard';
-import AppLayout from './layouts/AppLayout';
 
 function App() {
   return (
