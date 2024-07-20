@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import PageNotFound from './pages/PageNotFound';
-import ProtectedRoute from './auth/ProtectedRoute';
+import ProtectedRoute from './features/auth/ProtectedRoute';
 import Welcome from './pages/Welcome';
 import DashBoard from './pages/DashBoard';
 import AppLayout from './layouts/AppLayout';
