@@ -1,5 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast';
 
 import ProtectedRoute from './features/auth/ProtectedRoute';
 
@@ -8,8 +10,6 @@ import AppLayout from './layouts/AppLayout';
 import PageNotFound from './pages/PageNotFound';
 import Welcome from './pages/Welcome';
 import DashBoard from './pages/DashBoard';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Toaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 60 * 1000 } },
