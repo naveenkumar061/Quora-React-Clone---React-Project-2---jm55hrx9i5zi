@@ -21,7 +21,7 @@ function Login() {
 
   return (
     <div className="px-6 text-sm sm:w-1/2 flex flex-col">
-      <div className="border-b border-[#DEE0E1] w-full pb-2 font-medium mb-4">
+      <div className="border-b border-[#dee0e1] pb-3 font-medium dark:border-[#393839] w-full text-center sm:text-left dark:text-[rgb(213,214,214)]">
         Login
       </div>
       <div className="mb-4 flex flex-col gap-4 dark:text-[rgb(213,214,214)]">
