@@ -12,6 +12,10 @@ import Welcome from './pages/Welcome';
 import DashBoard from './pages/DashBoard';
 import UnderMaintenance from './utils/UnderMaintenance';
 import Spaces from './pages/Spaces';
+import SpaceInfo from './pages/SpaceInfo';
+import PostInfo from './pages/PostInfo';
+import UserInfo from './pages/UserInfo';
+import ProfileDetails from './pages/ProfileDetails';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 60 * 1000 } },
@@ -36,6 +40,11 @@ function App() {
             <Route path="answer" element={<UnderMaintenance />} />
             <Route path="spaces" element={<Spaces />} />
             <Route path="notification" element={<UnderMaintenance />} />
+            <Route path="userinfo" element={<UserInfo />} />
+            <Route path="/spaces/:id" element={<SpaceInfo />} />
+            <Route path="/posts/:id" element={<PostInfo />} />
+            <Route path="/home/posts/:id" element={<PostInfo />} />
+            <Route path="/profile/:id" element={<ProfileDetails />} />
           </Route>
           <Route path="login" element={<Welcome />} />
           <Route path="*" element={<PageNotFound />} />

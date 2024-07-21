@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import QuoraLogo from '../../assets/logos/QuoraLogo';
 import SearchBox from './SearchBox';
 import { useState } from 'react';
+import CreatePost from '../../features/post/CreatePost';
 
 function TDNav() {
   const [isCreatePostVisible, setIsCreatePostVisible] = useState(false);
@@ -22,6 +23,7 @@ function TDNav() {
       >
         Create Post
       </button>
+      <CreatePost show={isCreatePostVisible} setShow={setIsCreatePostVisible} />
     </div>
   );
 }

@@ -5,6 +5,8 @@ import RouteLI from './RouteLI';
 import SearchBox from './SearchBox';
 import Avatar from 'react-avatar';
 import { useState } from 'react';
+import CreatePost from '../../features/post/CreatePost';
+import DProfile from './DProfile';
 
 function DesktopNav() {
   const [openPopup, setOpenPopup] = useState(false);
@@ -18,6 +20,10 @@ function DesktopNav() {
   function handleProfilePopup(e) {
     e.stopPropagation();
     setOpenPopup((prev) => !prev);
+  }
+
+  function closePopup(e) {
+    setOpenPopup(false);
   }
 
   return (
@@ -43,6 +49,8 @@ function DesktopNav() {
       >
         Create Post
       </button>
+      {openPopup && <DProfile closeSideBar={closePopup} />}
+      <CreatePost show={isCreatePostVisible} setShow={setIsCreatePostVisible} />
     </div>
   );
 }
