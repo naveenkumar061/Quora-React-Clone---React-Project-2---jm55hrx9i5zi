@@ -10,6 +10,8 @@ import AppLayout from './layouts/AppLayout';
 import PageNotFound from './pages/PageNotFound';
 import Welcome from './pages/Welcome';
 import DashBoard from './pages/DashBoard';
+import UnderMaintenance from './utils/UnderMaintenance';
+import Spaces from './pages/Spaces';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 60 * 1000 } },
@@ -30,6 +32,10 @@ function App() {
           >
             <Route index element={<Navigate replace to="home" />} />
             <Route path="home" element={<DashBoard />} />
+            <Route path="following" element={<UnderMaintenance />} />
+            <Route path="answer" element={<UnderMaintenance />} />
+            <Route path="spaces" element={<Spaces />} />
+            <Route path="notification" element={<UnderMaintenance />} />
           </Route>
           <Route path="login" element={<Welcome />} />
           <Route path="*" element={<PageNotFound />} />

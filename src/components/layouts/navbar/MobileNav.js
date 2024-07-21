@@ -1,6 +1,12 @@
+import DDNav from './DDNav';
+import TDNav from './TDNav';
+
 function MobileNav() {
   return (
-    <div className="sm:hidden dark:text-[rgb(213,214,214)]">MobileNav</div>
+    <div className="md:hidden flex flex-col h-full max-h-20 gap-4 p-2">
+      <TDNav />
+      <DDNav />
+    </div>
   );
 }
 
