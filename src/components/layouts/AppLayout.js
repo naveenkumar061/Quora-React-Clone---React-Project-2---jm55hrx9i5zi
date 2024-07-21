@@ -5,7 +5,7 @@ function AppLayout() {
   return (
     <div>
       <Navbar />
-      <div className="mt-20"></div>
+      <div className="mt-32 md:mt-20"></div>
       <Outlet />
     </div>
   );

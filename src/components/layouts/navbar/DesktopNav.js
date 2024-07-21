@@ -26,7 +26,7 @@ function DesktopNav() {
         <QuoraLogo className="h-16 w-16 fill-red-700 hover:opacity-50 cursor-pointer" />
       </Link>
       {dataNavs.map((item, index) => (
-        <RouteLI item={item} index={index} />
+        <RouteLI item={item} key={index} />
       ))}
       <SearchBox />
       <Avatar

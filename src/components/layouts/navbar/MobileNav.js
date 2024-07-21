@@ -3,7 +3,7 @@ import TDNav from './TDNav';
 
 function MobileNav() {
   return (
-    <div className="md:hidden flex flex-col h-full max-h-20 gap-4 p-2">
+    <div className="md:hidden flex flex-col h-fit gap-4">
       <TDNav />
       <DDNav />
     </div>
