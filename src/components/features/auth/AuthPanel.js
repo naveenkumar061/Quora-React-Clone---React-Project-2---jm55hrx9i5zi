@@ -4,7 +4,7 @@ import Footer from '../../layouts/Footer';
 
 function AuthPanel() {
   return (
-    <div className="bg-white border-[.8px] block pt-4 max-w-2xl rounded">
+    <div className="bg-white block pt-4 max-w-2xl rounded dark:bg-neutral-800">
       <AuthHeader />
       <AuthForm />
       <Footer />
