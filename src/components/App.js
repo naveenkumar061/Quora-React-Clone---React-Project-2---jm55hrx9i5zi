@@ -18,7 +18,7 @@ import UserInfo from './pages/UserInfo';
 import ProfileDetails from './pages/ProfileDetails';
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 60 * 1000 } },
+  defaultOptions: { queries: { staleTime: 0 } },
 });
 
 function App() {
