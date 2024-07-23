@@ -20,7 +20,7 @@ function MSearch() {
         <FiSearch size={22} />
         Search
       </button>
-      <Modal show={showSearchBox} close={closeSearchBox}>
+      <Modal open={showSearchBox} close={closeSearchBox}>
         <div className="w-screen h-screen">
           <MSearchBox close={closeSearchBox} />
         </div>
