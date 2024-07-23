@@ -1,5 +1,7 @@
+import SinglePost from '../features/post/SinglePost';
+
 function PostInfo() {
-  return <div>PostInfo</div>;
+  return <SinglePost />;
 }
 
 export default PostInfo;

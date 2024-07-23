@@ -2,6 +2,9 @@ import { format } from 'date-fns';
 import Avatar from 'react-avatar';
 import { Link } from 'react-router-dom';
 import CommentListChild from './CommentListChild';
+import { BsThreeDotsVertical } from 'react-icons/bs';
+import { useState } from 'react';
+import Dropdown from '../../utils/DropDown'; // Import the Dropdown component
 
 function CommentsList({
   name,
@@ -12,24 +15,45 @@ function CommentsList({
   postAuthorName,
   postAuthorId,
 }) {
+  const authorised = localStorage.getItem('name');
+  const [openComment, setOpenComment] = useState(false);
+
+  function handleComment() {
+    setOpenComment(true);
+  }
+
+  function closeComment() {
+    setOpenComment(false);
+  }
+
   return (
     <>
-      <div className="flex justify-start gap-4">
-        <Avatar name={name} size={25} round={true} textSizeRatio={2} />
-        <div className="flex flex-col">
-          <div>
-            <Link
-              to={`/profile/${authorId}`}
-              className="text-sm font-semibold hover:underline pr-4"
-            >
-              {name}
-            </Link>
-            <span className="text-[13px] text-[#636466] dark:text-[#b1b3b6]">
-              {format(date, 'MMM yyyy')}
-            </span>
+      <div className="flex justify-between relative">
+        <div className="flex justify-start gap-4">
+          <Avatar name={name} size={25} round={true} textSizeRatio={2} />
+          <div className="flex flex-col">
+            <div>
+              <Link
+                to={`/profile/${authorId}`}
+                className="text-sm font-semibold hover:underline pr-4"
+              >
+                {name}
+              </Link>
+              <span className="text-[13px] text-[#636466] dark:text-[#b1b3b6]">
+                {format(date, 'MMM yyyy')}
+              </span>
+            </div>
+            <div>{content}</div>
           </div>
-          <div>{content}</div>
         </div>
+        {authorised === name && (
+          <div className="text-right self-center cursor-pointer">
+            <BsThreeDotsVertical onClick={handleComment} />
+            {openComment && (
+              <Dropdown closeDropdown={closeComment} type="Comment" />
+            )}
+          </div>
+        )}
       </div>
       {children.length > 0 &&
         children.map((commentItem) => (
