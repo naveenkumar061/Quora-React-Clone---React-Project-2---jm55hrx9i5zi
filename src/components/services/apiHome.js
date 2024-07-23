@@ -209,15 +209,44 @@ export async function getComments(postId) {
   }
 }
 
-export async function deletePost(postId) {
-  console.log(postId);
-  const response = await fetch(`${url}/quora/post/${postId}`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: authToken,
-      projectID: projectID,
-    },
-  });
-  console.log(response);
-  return 'Post is deleted successfully';
+export async function searchData(query, limited = false) {
+  let result = {};
+  try {
+    let data = await fetch(
+      `https://academics.newtonschool.co/api/v1/quora/post?search={"title":"${query}","content":"${query}"}&limit=${
+        limited ? 5 : 1000
+      }`,
+      {
+        method: 'GET',
+        headers: {
+          projectID: projectID,
+          Authorization: authToken,
+        },
+      }
+    );
+    let res = await data.json();
+    if (res.status === 'success') {
+      result.posts = res.data;
+    }
+    data = await fetch(
+      `https://academics.newtonschool.co/api/v1/quora/user/?search={"name":"${query}"}&limit=${
+        limited ? 5 : 1000
+      }`,
+      {
+        method: 'GET',
+        headers: {
+          projectID: projectID,
+          Authorization: authToken,
+        },
+      }
+    );
+    res = await data.json();
+    if (res.status === 'success') {
+      result.users = res.data;
+    }
+    result.message = 'success';
+    return result;
+  } catch (error) {
+    return { message: 'error' };
+  }
 }

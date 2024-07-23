@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import QuoraLogo from '../../assets/logos/QuoraLogo';
-import SearchBox from './SearchBox';
 import { useState } from 'react';
 import CreatePost from '../../features/post/CreatePost';
+import MSearch from './MSearch';
 
 function TDNav() {
   const [isCreatePostVisible, setIsCreatePostVisible] = useState(false);
@@ -13,7 +13,7 @@ function TDNav() {
 
   return (
     <div className="flex items-center justify-between px-4 bg-[#b92b27] dark:bg-[#202020]">
-      <SearchBox />
+      <MSearch />
       <Link to="home">
         <QuoraLogo className="h-16 w-16 fill-white hover:opacity-50 cursor-pointer" />
       </Link>

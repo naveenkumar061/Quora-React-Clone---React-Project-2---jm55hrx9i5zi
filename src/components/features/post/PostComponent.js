@@ -123,7 +123,7 @@ function PostComponent({ data }) {
 
   return (
     <div className="bg-[#fff] dark:bg-[#262626] border border-[#dee0e1] dark:border-[#262626] rounded p-4 flex flex-col gap-2">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 h-full">
         <Avatar
           name={postAuthorName}
           size={25}
@@ -160,7 +160,7 @@ function PostComponent({ data }) {
         <img
           src={finalImage}
           alt="img"
-          className="w-full border border-gray-400 rounded-sm"
+          className="w-full h-64 border border-gray-400 rounded-sm"
         />
       )}
       <div className="flex gap-2 items-center">

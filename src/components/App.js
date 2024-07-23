@@ -16,6 +16,7 @@ import SpaceInfo from './pages/SpaceInfo';
 import PostInfo from './pages/PostInfo';
 import UserInfo from './pages/UserInfo';
 import ProfileDetails from './pages/ProfileDetails';
+import SearchPage from './pages/SearchPage';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -44,7 +45,9 @@ function App() {
             <Route path="/spaces/:id" element={<SpaceInfo />} />
             <Route path="/posts/:id" element={<PostInfo />} />
             <Route path="/home/posts/:id" element={<PostInfo />} />
+            <Route path="/search/posts/:id" element={<PostInfo />} />
             <Route path="/profile/:id" element={<ProfileDetails />} />
+            <Route path="/search" element={<SearchPage />} />
           </Route>
           <Route path="login" element={<Welcome />} />
           <Route path="*" element={<PageNotFound />} />
