@@ -3,7 +3,6 @@ import { FiSearch } from 'react-icons/fi';
 import { IoIosArrowBack } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 import { searchData } from '../../services/apiHome';
-import Loader from '../../utils/Loader';
 import Avatar from 'react-avatar';
 
 function MSearchBox({ close }) {
@@ -78,7 +77,7 @@ function MSearchBox({ close }) {
     closeDropDown();
   }
   return (
-    <div className="p-2 flex gap-2 bg-[#b92b27] items-center justify-center">
+    <div className="p-2 flex gap-2 bg-[#b92b27] items-center justify-center dark:text-[#b1b3b6]">
       <button onClick={close}>
         <IoIosArrowBack size={24} className="text-white flex-shrink-0" />
       </button>

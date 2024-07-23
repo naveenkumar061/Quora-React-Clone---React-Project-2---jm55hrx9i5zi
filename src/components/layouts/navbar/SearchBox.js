@@ -79,7 +79,7 @@ export default function SearchBox() {
 
   return (
     <ClickAwayListener onClickAway={closeDropDown}>
-      <div className="relative w-60 h-12 z-10 bg-white dark:bg-[#262626]">
+      <div className="relative w-60 h-12 z-10 bg-white dark:bg-[#262626] dark:text-[#b1b3b6]">
         <div className="w-[90%] md:w-60 flex bg-white dark:bg-[#181818] my-2 lg:mx-2 p-2 gap-2 rounded-[3px] border border-[#dee0e1] dark:border-[#393839] hover:border-[#2e69ff] dark:hover:border-[#2e69ff]">
           <div
             ref={containerRef}
