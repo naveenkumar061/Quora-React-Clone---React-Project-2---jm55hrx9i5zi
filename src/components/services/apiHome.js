@@ -59,6 +59,29 @@ export async function getUserPosts(postId) {
   }
 }
 
+export async function editPost(formData, postID) {
+  console.log(postID);
+  try {
+    const response = await fetch(`${url}/quora/post/${postID}`, {
+      method: 'PATCH',
+      body: formData,
+      headers: {
+        projectID: projectID,
+        Authorization: authToken,
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Something went wrong while fetching data');
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error updating post:', error);
+    throw new Error(
+      error.message || 'Something went wrong while updating data'
+    );
+  }
+}
+
 export async function addSpace(formData) {
   try {
     const response = await fetch(`${url}/quora/channel`, {

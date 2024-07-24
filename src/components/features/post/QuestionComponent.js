@@ -105,13 +105,11 @@ function QuestionComponent({ data }) {
       shouldUpVote: !localIsLiked,
       postId: _id,
     });
-    if (localIsDisliked) downvoting({ shouldDownVote: false, postId: _id });
     setLocalIsLiked(!localIsLiked);
     setLocalIsDisliked(false);
   }
 
   function handleDownvoteButton() {
-    if (localIsLiked) upvoting({ shouldUpVote: false, postId: _id });
     downvoting({
       shouldDownVote: !localIsDisliked,
       postId: _id,
