@@ -31,7 +31,6 @@ export default function EditPost({
 
   const mutation = useMutation((formData) => editPost(formData, postID), {
     onSuccess: (data) => {
-      closeDropdown();
       setShow(false);
       if (data.status === 'success') {
         toast.success(data.message);
@@ -55,16 +54,14 @@ export default function EditPost({
     formData.append('title', data.title);
     formData.append('content', data.content);
     formData.append('images', files[0]);
+
     mutation.mutate(formData);
     setShow(false);
   }
-  function filesBtnHandler(e) {
-    e.stopPropagation();
-    if (e.target.files && e.target.files.length > 0) {
-      setFiles([...e.target.files]);
-    }
-  }
 
+  function filesBtnHandler(e) {
+    setFiles([...e.target.files]);
+  }
   function handleRemoveFile(index) {
     const newFiles = [...files];
     newFiles.splice(index, 1);
@@ -124,7 +121,7 @@ export default function EditPost({
                     className="absolute w-0 h-0"
                     multiple
                     accept="image/*"
-                    onChange={(e) => filesBtnHandler(e)}
+                    onChange={filesBtnHandler}
                   />
                   <FaRegImages size={24} />
                 </label>
