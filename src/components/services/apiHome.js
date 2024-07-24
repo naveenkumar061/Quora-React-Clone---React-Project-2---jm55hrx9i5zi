@@ -40,6 +40,7 @@ export async function getPosts() {
     );
   }
 }
+
 export async function getUserPosts(postId) {
   try {
     const response = await fetch(`${url}/quora/post/${postId}`, {
@@ -60,7 +61,6 @@ export async function getUserPosts(postId) {
 }
 
 export async function editPost(formData, postID) {
-  console.log(postID);
   try {
     const response = await fetch(`${url}/quora/post/${postID}`, {
       method: 'PATCH',
@@ -79,6 +79,26 @@ export async function editPost(formData, postID) {
     throw new Error(
       error.message || 'Something went wrong while updating data'
     );
+  }
+}
+
+export async function deletePost(postID) {
+  try {
+    const response = await fetch(`${url}/quora/post/${postID}`, {
+      method: 'DELETE',
+      headers: {
+        projectID: projectID,
+        Authorization: authToken,
+      },
+    });
+    if (response.status === 204) {
+      return true; // Successfully deleted
+    } else {
+      throw new Error('Unexpected response status: ' + response.status);
+    }
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    return false;
   }
 }
 

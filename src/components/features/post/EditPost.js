@@ -15,7 +15,6 @@ export default function EditPost({
   oldContent,
   postID,
   images,
-  // updatePostData, // Pass a callback to update post data
 }) {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -48,7 +47,7 @@ export default function EditPost({
     },
   });
 
-  const onSubmit = (data) => {
+  function onSubmit(data) {
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('content', data.content);
@@ -58,9 +57,9 @@ export default function EditPost({
       }
     }
     mutation.mutate(formData);
-  };
+  }
 
-  const handleRemoveFile = (index) => {
+  function handleRemoveFile(index) {
     if (imagesInput.current?.files) {
       const filesArray = Array.from(imagesInput.current?.files);
       filesArray.splice(index, 1);
@@ -68,7 +67,7 @@ export default function EditPost({
       filesArray.forEach((file) => dataTransfer.items.add(file));
       imagesInput.current.files = dataTransfer.files;
     }
-  };
+  }
 
   return (
     <Modal open={show} close={() => setShow(false)}>
