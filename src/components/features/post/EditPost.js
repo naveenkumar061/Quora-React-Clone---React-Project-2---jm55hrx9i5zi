@@ -15,6 +15,7 @@ export default function EditPost({
   oldContent,
   postID,
   images,
+  closeDropdown,
 }) {
   const [files, setFiles] = useState(images);
   const imagesInput = useRef(null);
@@ -31,6 +32,7 @@ export default function EditPost({
   const mutation = useMutation((formData) => editPost(formData, postID), {
     onSuccess: (data) => {
       console.log(data);
+      closeDropdown();
       setShow(false);
       if (data.status === 'success') {
         toast.success(data.message);
@@ -52,23 +54,32 @@ export default function EditPost({
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('content', data.content);
-    if (data.images > 0)
+
+    console.log(data.images);
+
+    // Check if data.images exists and has files before iterating
+    if (data.images && data.images.length > 0) {
       for (let file of data.images) {
         formData.append('images', file);
       }
-    if (files.length > 0) {
+    }
+
+    // Add the existing files
+    if (files && files.length > 0) {
       for (let file of files) {
         formData.append('images', file);
       }
-      setFiles(files);
     }
     mutation.mutate(formData);
     setShow(false);
   }
-
   function filesBtnHandler(e) {
-    setFiles([...e.target.files]);
+    e.stopPropagation();
+    if (e.target.files && e.target.files.length > 0) {
+      setFiles([...e.target.files]);
+    }
   }
+
   function handleRemoveFile(index) {
     const newFiles = [...files];
     newFiles.splice(index, 1);
@@ -84,7 +95,10 @@ export default function EditPost({
         <div className="w-full flex justify-between items-center">
           <div className="flex gap-4 items-center">
             <button
-              onClick={() => setShow(false)}
+              onClick={() => {
+                setShow(false);
+                closeDropdown();
+              }}
               className="rounded-full p-2 hover:bg-[rgba(0,0,0,0.1)] dark:hover:bg-[#ffffff15] transition duration-300"
             >
               <RxCross2 size={24} />
@@ -125,7 +139,7 @@ export default function EditPost({
                     className="absolute w-0 h-0"
                     multiple
                     accept="image/*"
-                    onChange={filesBtnHandler}
+                    onChange={(e) => filesBtnHandler(e)}
                   />
                   <FaRegImages size={24} />
                 </label>
