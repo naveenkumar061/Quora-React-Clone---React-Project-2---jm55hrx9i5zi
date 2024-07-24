@@ -4,7 +4,7 @@ import { deletePost } from '../../services/apiHome';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-function DeletePost({ show, setShow, postID }) {
+function DeletePost({ show, setShow, postID, closeDropdown }) {
   const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationFn: deletePost,
@@ -12,6 +12,7 @@ function DeletePost({ show, setShow, postID }) {
       setShow(false);
       toast.success('Post is deleted successfully');
       navigate('/home');
+      closeDropdown();
     },
     onError: () => {
       toast.error('OOPS! Some error occurred.');
@@ -30,7 +31,10 @@ function DeletePost({ show, setShow, postID }) {
         </div>
         <div className="flex gap-2 w-full justify-end">
           <button
-            onClick={() => setShow(false)}
+            onClick={() => {
+              setShow(false);
+              closeDropdown();
+            }}
             className="rounded-full border-2 dark:border-[#262626] px-4 py-2 font-medium text-[#636466] dark:text-[#e2e2e2] hover:bg-[#00000010] dark:hover:bg-[#00000050] transition"
           >
             Cancel

@@ -55,11 +55,13 @@ function Dropdown({ closeDropdown, type }) {
         oldContent={postForUser.data.content}
         postID={id}
         images={postForUser.data.images}
+        closeDropdown={closeDropdown}
       />
       <DeletePost
         show={showDeletePost}
         setShow={setShowDeletePost}
         postID={id}
+        closeDropdown={closeDropdown}
       />
     </div>
   );
