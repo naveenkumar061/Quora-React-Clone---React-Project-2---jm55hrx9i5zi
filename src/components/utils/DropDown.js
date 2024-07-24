@@ -12,8 +12,6 @@ function Dropdown({ closeDropdown, type }) {
 
   const { postForUser } = usePostsForUser(id);
 
-  console.log(postForUser);
-
   function openEditPost() {
     setShowEditPost(true);
   }
@@ -30,24 +28,24 @@ function Dropdown({ closeDropdown, type }) {
     if (type === 'Post') openDeletePost();
   }
 
-  console.log(postForUser);
-
   return (
-    <div className="absolute z-10 right-0 mt-2 pb-2 bg-white border border-gray-200 shadow-lg">
-      <button
-        onClick={handleEditType}
-        className="transition-all p-2 w-full duration-200 text-[#636466] dark:text-[#e2e2e2] hover:bg-[#0000000d] dark:hover:bg-[#00000052] hover:bg-gray-100 cursor-pointer flex items-center justify-between gap-1"
-      >
-        <MdOutlineModeEdit className="w-[18px] h-[18px] md:w-[24px] md:h-[24px]" />
-        Edit {type}
-      </button>
-      <button
-        className="transition-all p-2 duration-200 text-[#636466] dark:text-[#e2e2e2] hover:bg-[#0000000d] dark:hover:bg-[#00000052] hover:bg-gray-100 cursor-pointer flex items-center justify-between gap-1"
-        onClick={handleDeleteType}
-      >
-        <MdDelete className="w-[18px] h-[18px] md:w-[24px] md:h-[24px] fill-red-700" />
-        Delete {type}
-      </button>
+    <>
+      <div className="absolute z-10 right-0 mt-2 pb-2 bg-white border border-gray-200 shadow-lg">
+        <button
+          onClick={handleEditType}
+          className="transition-all p-2 w-full duration-200 text-[#636466] dark:text-[#e2e2e2] hover:bg-[#0000000d] dark:hover:bg-[#00000052] hover:bg-gray-100 cursor-pointer flex items-center justify-between gap-1"
+        >
+          <MdOutlineModeEdit className="w-[18px] h-[18px] md:w-[24px] md:h-[24px]" />
+          Edit {type}
+        </button>
+        <button
+          className="transition-all p-2 duration-200 text-[#636466] dark:text-[#e2e2e2] hover:bg-[#0000000d] dark:hover:bg-[#00000052] hover:bg-gray-100 cursor-pointer flex items-center justify-between gap-1"
+          onClick={handleDeleteType}
+        >
+          <MdDelete className="w-[18px] h-[18px] md:w-[24px] md:h-[24px] fill-red-700" />
+          Delete {type}
+        </button>
+      </div>
       <EditPost
         show={showEditPost}
         setShow={setShowEditPost}
@@ -63,7 +61,7 @@ function Dropdown({ closeDropdown, type }) {
         postID={id}
         closeDropdown={closeDropdown}
       />
-    </div>
+    </>
   );
 }
 

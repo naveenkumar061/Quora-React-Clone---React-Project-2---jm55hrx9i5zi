@@ -31,6 +31,11 @@ export default function EditPost({
 
   const mutation = useMutation((formData) => editPost(formData, postID), {
     onSuccess: (data) => {
+<<<<<<< HEAD
+=======
+      console.log(data);
+      closeDropdown();
+>>>>>>> 6501028991b81a545294dce22fbf26fd456d50de
       setShow(false);
       if (data.status === 'success') {
         toast.success(data.message);
@@ -53,14 +58,36 @@ export default function EditPost({
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('content', data.content);
+<<<<<<< HEAD
     formData.append('images', files[0]);
+=======
+
+    console.log(data.images);
+
+    // Check if data.images exists and has files before iterating
+    if (data.images && data.images.length > 0) {
+      for (let file of data.images) {
+        formData.append('images', file);
+      }
+    }
+
+    // Add the existing files
+    if (files && files.length > 0) {
+      for (let file of files) {
+        formData.append('images', file);
+      }
+    }
+>>>>>>> 6501028991b81a545294dce22fbf26fd456d50de
     mutation.mutate(formData);
     setShow(false);
   }
-
   function filesBtnHandler(e) {
-    setFiles([...e.target.files]);
+    e.stopPropagation();
+    if (e.target.files && e.target.files.length > 0) {
+      setFiles([...e.target.files]);
+    }
   }
+
   function handleRemoveFile(index) {
     const newFiles = [...files];
     newFiles.splice(index, 1);
@@ -120,7 +147,7 @@ export default function EditPost({
                     className="absolute w-0 h-0"
                     multiple
                     accept="image/*"
-                    onChange={filesBtnHandler}
+                    onChange={(e) => filesBtnHandler(e)}
                   />
                   <FaRegImages size={24} />
                 </label>

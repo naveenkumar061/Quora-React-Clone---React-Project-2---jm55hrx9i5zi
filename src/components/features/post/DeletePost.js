@@ -10,6 +10,7 @@ function DeletePost({ show, setShow, postID, closeDropdown }) {
     mutationFn: deletePost,
     onSuccess: () => {
       setShow(false);
+      closeDropdown();
       toast.success('Post is deleted successfully');
       navigate('/home');
       closeDropdown();
