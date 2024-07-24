@@ -1,5 +1,7 @@
+import SpaceMain from '../features/spaces/SpaceMain';
+
 function Spaces() {
-  return <div>Spaces</div>;
+  return <SpaceMain />;
 }
 
 export default Spaces;
