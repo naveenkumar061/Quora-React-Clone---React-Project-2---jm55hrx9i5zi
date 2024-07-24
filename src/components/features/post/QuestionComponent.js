@@ -16,11 +16,11 @@ function QuestionComponent({ data }) {
   const authorised = localStorage.getItem('name');
   const [openPost, setOpenPost] = useState(false);
 
-  function handleComment() {
-    setOpenPost(true);
+  function handlePost() {
+    setOpenPost(!openPost);
   }
 
-  function closeComment() {
+  function closePost() {
     setOpenPost(false);
   }
 
@@ -151,10 +151,8 @@ function QuestionComponent({ data }) {
           </Link>
         </div>
       </div>
-      <div className="text-base font-bold">
-        {title}
-        <div>{content}</div>
-      </div>
+      <div className="text-base font-bold">{title}</div>
+      <div>{content}</div>
       {finalImage && (
         <img
           src={finalImage}
@@ -233,8 +231,8 @@ function QuestionComponent({ data }) {
         </div>
         {authorised === postAuthorName && (
           <div className="text-right self-center cursor-pointer">
-            <BsThreeDotsVertical onClick={handleComment} />
-            {openPost && <Dropdown closeDropdown={closeComment} type="Post" />}
+            <BsThreeDotsVertical onClick={handlePost} />
+            {openPost && <Dropdown closeDropdown={closePost} type="Post" />}
           </div>
         )}
       </div>

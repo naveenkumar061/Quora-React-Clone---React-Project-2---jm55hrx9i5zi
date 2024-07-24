@@ -227,6 +227,26 @@ export async function addComments(comment, postId) {
   }
 }
 
+export async function deleteComments(commentId) {
+  try {
+    const response = await fetch(`${url}/quora/comment/${commentId}`, {
+      method: 'DELETE',
+      headers: {
+        projectID: projectID,
+        Authorization: authToken,
+      },
+    });
+    if (response.status === 204) {
+      return true; // Successfully deleted
+    } else {
+      throw new Error('Unexpected response status: ' + response.status);
+    }
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    return false;
+  }
+}
+
 export async function getComments(postId) {
   console.log(postId);
   try {

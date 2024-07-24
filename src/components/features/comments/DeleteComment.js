@@ -1,28 +1,26 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Modal from '../../utils/Modal';
-import { deletePost } from '../../services/apiHome';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteComments } from '../../services/apiHome';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 
-function DeletePost({ show, setShow, postID, closeDropdown }) {
-  const navigate = useNavigate();
+function DeleteComment({ show, setShow, closeDropdown, commentId }) {
   const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
-    mutationFn: deletePost,
+    mutationFn: deleteComments,
     onSuccess: () => {
       setShow(false);
       closeDropdown();
+      toast.success('Comment is deleted successfully');
       queryClient.invalidateQueries('posts');
-      toast.success('Post is deleted successfully');
-      navigate('/home');
     },
     onError: () => {
       toast.error('OOPS! Some error occurred.');
     },
   });
 
-  function handleDeletePost() {
-    mutate(postID);
+  function handleDeleteComment() {
+    mutate(commentId);
   }
 
   return (
@@ -42,7 +40,7 @@ function DeletePost({ show, setShow, postID, closeDropdown }) {
             Cancel
           </button>
           <button
-            onClick={handleDeletePost}
+            onClick={handleDeleteComment}
             className="rounded-full border-2 border-[#2e69ff] px-4 py-2 font-medium bg-[#2e69ff] hover:bg-[#1a5aff] text-[#fff] transition"
           >
             Confirm
@@ -53,4 +51,4 @@ function DeletePost({ show, setShow, postID, closeDropdown }) {
   );
 }
 
-export default DeletePost;
+export default DeleteComment;

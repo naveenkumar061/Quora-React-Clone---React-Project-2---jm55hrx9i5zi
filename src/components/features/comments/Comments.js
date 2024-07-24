@@ -79,6 +79,7 @@ function Comments({ data, addCommentRef }) {
           .map((commentItem) => (
             <CommentsList
               key={commentItem._id}
+              id={commentItem._id}
               name={commentItem.author_details.name}
               date={commentItem.createdAt}
               content={commentItem.content}

@@ -14,12 +14,13 @@ function CommentsList({
   children,
   postAuthorName,
   postAuthorId,
+  id,
 }) {
   const authorised = localStorage.getItem('name');
   const [openComment, setOpenComment] = useState(false);
 
   function handleComment() {
-    setOpenComment(true);
+    setOpenComment(!openComment);
   }
 
   function closeComment() {
@@ -50,7 +51,11 @@ function CommentsList({
           <div className="text-right self-center cursor-pointer">
             <BsThreeDotsVertical onClick={handleComment} />
             {openComment && (
-              <Dropdown closeDropdown={closeComment} type="Comment" />
+              <Dropdown
+                closeDropdown={closeComment}
+                type="Comment"
+                commentId={id}
+              />
             )}
           </div>
         )}
