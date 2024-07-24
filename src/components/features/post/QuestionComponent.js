@@ -151,13 +151,8 @@ function QuestionComponent({ data }) {
           </Link>
         </div>
       </div>
-      <div>
-        <Link
-          to={`posts/${_id}`}
-          className="text-base font-bold underline-offset-1 hover:underline"
-        >
-          {title}
-        </Link>
+      <div className="text-base font-bold">
+        {title}
         <div>{content}</div>
       </div>
       {finalImage && (

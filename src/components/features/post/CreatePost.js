@@ -68,7 +68,7 @@ function CreatePost({ show, setShow }) {
       formData.append('content', data.description);
     }
     if (files.length > 0) {
-      for (let file of files) formData.append('image', file);
+      for (let file of files) formData.append('images', file);
       setFiles([]);
     }
     mutate(formData);
@@ -103,15 +103,14 @@ function CreatePost({ show, setShow }) {
               {files.length === 0 && <div>No File Chosen</div>}
               {files.length > 0 &&
                 files.map((file, index) => (
-                  <div key={index} className="flex gap-1">
-                    <div className="relative w-10 sm:w-14 h-10">
-                      <img
-                        src={URL.createObjectURL(file)}
-                        alt=""
-                        sizes="48px"
-                      />
-                    </div>
-                    <button onClick={() => handleRemoveFile(index)}>
+                  <div key={index} className="relative">
+                    <img src={file} alt="" className="w-10 h-10 object-cover" />
+
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveFile(index)}
+                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+                    >
                       <RiDeleteBin6Line size={18} />
                     </button>
                   </div>
@@ -126,7 +125,6 @@ function CreatePost({ show, setShow }) {
                 id="images"
                 {...register('images')}
                 onChange={filesBtnHandler} // Call filesBtnHandler on file selection
-                multiple // Allow multiple file selection
               />
               <FaRegImages size={24} />
             </label>

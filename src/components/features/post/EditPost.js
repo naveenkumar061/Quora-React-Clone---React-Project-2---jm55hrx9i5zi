@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { editPost } from '../../services/apiHome';
 import toast from 'react-hot-toast';
@@ -16,19 +16,21 @@ export default function EditPost({
   postID,
   images,
 }) {
+  const [files, setFiles] = useState(images);
+  const imagesInput = useRef(null);
+
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       title: oldTitle,
       content: oldContent,
-      images: [],
     },
   });
 
-  const imagesInput = useRef(null);
   const queryClient = useQueryClient();
 
   const mutation = useMutation((formData) => editPost(formData, postID), {
     onSuccess: (data) => {
+      console.log(data);
       setShow(false);
       if (data.status === 'success') {
         toast.success(data.message);
@@ -40,33 +42,39 @@ export default function EditPost({
       } else {
         toast.error('OOPS! Some error occurred.');
       }
-      reset();
     },
     onError: () => {
       toast.error('OOPS! Some error occurred.');
     },
   });
 
+  useEffect(() => setFiles(images), []);
+
   function onSubmit(data) {
     const formData = new FormData();
     formData.append('title', data.title);
     formData.append('content', data.content);
-    if (data.images.length > 0) {
+    if (data.images > 0)
       for (let file of data.images) {
         formData.append('images', file);
       }
+    if (files.length > 0) {
+      for (let file of files) {
+        formData.append('images', file);
+      }
+      setFiles(files);
     }
     mutation.mutate(formData);
+    setShow(false);
   }
 
+  function filesBtnHandler(e) {
+    setFiles([...e.target.files]);
+  }
   function handleRemoveFile(index) {
-    if (imagesInput.current?.files) {
-      const filesArray = Array.from(imagesInput.current?.files);
-      filesArray.splice(index, 1);
-      const dataTransfer = new DataTransfer();
-      filesArray.forEach((file) => dataTransfer.items.add(file));
-      imagesInput.current.files = dataTransfer.files;
-    }
+    const newFiles = [...files];
+    newFiles.splice(index, 1);
+    setFiles(newFiles);
   }
 
   return (
@@ -91,41 +99,39 @@ export default function EditPost({
               Save Post
             </button>
           </div>
-          <div className="px-3 sm:px-5 flex justify-between items-center ">
-            <div className="flex gap-5 items-center w-full">
-              <div className="flex gap-4 flex-wrap max-h-[100px] w-full">
-                {images.length === 0 && <div>No File Chosen</div>}
-                {images.length > 0 &&
-                  images.map((file, index) => (
-                    <div key={index} className="flex gap-1">
-                      <div className="relative w-10 sm:w-14 h-10">
-                        {file instanceof File ? (
-                          <img
-                            src={URL.createObjectURL(file)}
-                            alt=""
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div>Invalid File</div>
-                        )}
-                      </div>
-                      <button onClick={() => handleRemoveFile(index)}>
+          <div className="px-3 sm:px-5 flex justify-between items-center gap-5">
+            <div className="flex items-center w-full">
+              <div className="flex flex-wrap max-h-[100px] w-full gap-2">
+                {files?.length === 0 && <div>No File Chosen</div>}
+                {files.length > 0 &&
+                  files.map((file, index) => (
+                    <div key={index} className="relative">
+                      <img
+                        src={file}
+                        alt=""
+                        className="w-10 h-10 object-cover"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveFile(index)}
+                        className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+                      >
                         <RiDeleteBin6Line size={18} />
                       </button>
                     </div>
                   ))}
+                <label className="relative cursor-pointer">
+                  <input
+                    ref={imagesInput}
+                    type="file"
+                    className="absolute w-0 h-0"
+                    multiple
+                    accept="image/*"
+                    onChange={filesBtnHandler}
+                  />
+                  <FaRegImages size={24} />
+                </label>
               </div>
-              <label className="relative cursor-pointer">
-                <input
-                  ref={imagesInput}
-                  type="file"
-                  className="absolute w-0 h-0"
-                  multiple
-                  accept="image/*"
-                  {...register('images')}
-                />
-                <FaRegImages size={24} />
-              </label>
             </div>
           </div>
         </div>
