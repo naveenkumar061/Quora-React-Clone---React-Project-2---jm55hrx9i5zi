@@ -48,8 +48,6 @@ export default function EditPost({
     },
   });
 
-  useEffect(() => setFiles(images), []);
-
   function onSubmit(data) {
     const formData = new FormData();
     formData.append('title', data.title);
