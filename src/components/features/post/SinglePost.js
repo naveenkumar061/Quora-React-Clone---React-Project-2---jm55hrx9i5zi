@@ -10,7 +10,7 @@ function SinglePost() {
   const { postForUser, isPosting } = usePostsForUser(id);
 
   return (
-    <div className="w-full gap-2 flex">
+    <div className="w-full gap-2 flex bg-white dark:bg-[#181818]">
       <div className="w-full mx-auto flex gap-16 mb-4 justify-center mt-20">
         <div className="w-full md:max-w-[550px] border border-[#dee0e1] dark:border-[#262626] h-fit">
           {isPosting && <Loader />}
