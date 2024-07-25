@@ -27,7 +27,7 @@ function DeletePost({ show, setShow, postID, closeDropdown }) {
 
   return (
     <Modal open={show} close={() => setShow(false)}>
-      <div className="p-6 rounded-lg bg-white dark:bg-[#181818] flex flex-col gap-3 items-center">
+      <div className="p-6 rounded-lg bg-white dark:bg-[#181818] flex flex-col gap-3 items-center dark:text-[#b1b3b6]">
         <div className="font-semibold text-[20px]">
           Do you want to delete this post?
         </div>

@@ -232,7 +232,7 @@ function QuestionComponent({ data }) {
         {authorised === postAuthorName && (
           <div className="text-right self-center cursor-pointer">
             <BsThreeDotsVertical onClick={handlePost} />
-            {openPost && <Dropdown closeDropdown={closePost} type="Post" />}
+            {openPost && <Dropdown closeDropdownPost={closePost} type="Post" />}
           </div>
         )}
       </div>

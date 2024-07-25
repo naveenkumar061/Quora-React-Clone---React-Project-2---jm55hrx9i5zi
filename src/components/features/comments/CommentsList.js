@@ -52,7 +52,7 @@ function CommentsList({
             <BsThreeDotsVertical onClick={handleComment} />
             {openComment && (
               <Dropdown
-                closeDropdown={closeComment}
+                closeDropdownComment={closeComment}
                 type="Comment"
                 commentId={id}
               />

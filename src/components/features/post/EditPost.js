@@ -77,7 +77,7 @@ export default function EditPost({
     <Modal open={show} close={() => setShow(false)}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="h-screen w-screen md:h-fit md:max-h-screen md:max-w-[600px] bg-white dark:bg-[#181818] rounded-lg p-6 flex flex-col items-start gap-2"
+        className="h-screen w-screen md:h-fit md:max-h-screen md:max-w-[600px] bg-white dark:bg-[#181818] rounded-lg p-6 flex flex-col items-start gap-2 dark:text-[#e2e2e2]"
       >
         <div className="w-full flex justify-between items-center">
           <div className="flex gap-4 items-center">
@@ -146,7 +146,7 @@ export default function EditPost({
         <input
           {...register('title', { required: true })}
           id="title"
-          className="w-full outline-none border-2 dark:border-[#393839] p-2 focus:border-[#2e69ff] dark:focus:border-[#2e69ff] transition-all duration-300"
+          className="w-full outline-none border-2 dark:border-[#393839] p-2 focus:border-[#2e69ff] dark:focus:border-[#2e69ff] transition-all duration-300 dark:text-[rgb(213,214,214)] dark:bg-[#181818]"
           placeholder="Enter The Question or Title"
         />
         {errors.title && (
@@ -162,7 +162,7 @@ export default function EditPost({
           id="content"
           rows={10}
           placeholder="Enter Description or Answer"
-          className="w-full outline-none border-2 dark:border-[#393839] p-2 focus:border-[#2e69ff] dark:focus:border-[#2e69ff] transition-all duration-300"
+          className="w-full outline-none border-2 dark:border-[#393839] p-2 focus:border-[#2e69ff] dark:focus:border-[#2e69ff] transition-all duration-300 dark:text-[rgb(213,214,214)] dark:bg-[#181818]"
         />
       </form>
     </Modal>
