@@ -20,7 +20,12 @@ export default function EditPost({
   const [files, setFiles] = useState(images);
   const imagesInput = useRef(null);
 
-  const { register, handleSubmit, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm({
     defaultValues: {
       title: oldTitle,
       content: oldContent,
@@ -87,7 +92,7 @@ export default function EditPost({
             </button>
             <button
               type="submit"
-              disabled={oldTitle === '' || oldTitle.length < 2}
+              disabled={!isValid}
               className="bg-[#2e69ff] hover:bg-[#1a5aff] disabled:opacity-35 disabled:hover:bg-[#2e69ff] text-white text-[13px] sm:text-[15px] font-medium p-2 sm:p-3 rounded-full transition duration-300"
             >
               Save Post
@@ -144,6 +149,11 @@ export default function EditPost({
           className="w-full outline-none border-2 dark:border-[#393839] p-2 focus:border-[#2e69ff] dark:focus:border-[#2e69ff] transition-all duration-300"
           placeholder="Enter The Question or Title"
         />
+        {errors.title && (
+          <div className="text-red-500 mt-1 text-[12px]">
+            {errors.title.message}
+          </div>
+        )}
         <label htmlFor="post-content" className="font-semibold">
           Post Description :
         </label>

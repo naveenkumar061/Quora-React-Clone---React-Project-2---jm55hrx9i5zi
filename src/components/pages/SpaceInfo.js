@@ -1,5 +1,7 @@
+import SingleSpace from '../features/spaces/SingleSpace';
+
 function SpaceInfo() {
-  return <div>SpaceInfo</div>;
+  return <SingleSpace />;
 }
 
 export default SpaceInfo;

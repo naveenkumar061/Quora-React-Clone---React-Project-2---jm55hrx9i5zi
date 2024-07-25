@@ -13,7 +13,7 @@ function SpaceMain() {
   console.log(spaces?.data);
 
   return (
-    <div className="pt-[88px] md:pt-14 min-h-screen w-full pb-4 dark:text-[#b1b3b6] bg-[#f7f7f8] dark:bg-[#202020] dark:border-[#262626]">
+    <div className="pt-[88px] md:pt-14 min-h-screen w-full pb-4 dark:text-[#b1b3b6] bg-[#f6f6f6] dark:bg-[#202020] dark:border-[#262626]">
       <div className="w-full md:w-9/12 mx-auto flex gap-4">
         {isLoading && <Loader />}
         {!isLoading && (
@@ -33,7 +33,7 @@ function SpaceMain() {
                   setShow={setShowCreateModal}
                 />
               </div>
-              <div className="flex flex-wrap gap-2 justify-center px-4">
+              <div className="flex flex-wrap gap-3 justify-center px-4">
                 {spaces?.data
                   .filter((space) => space.owner.name === name)
                   .map((space, index) => (
@@ -42,7 +42,7 @@ function SpaceMain() {
               </div>
               <div className="font-bold text-xl px-4">Discover Spaces</div>
               <div className="font-medium  px-4">Spaces you might like</div>
-              <div className="flex flex-wrap gap-2 justify-center px-4">
+              <div className="flex flex-wrap gap-3 justify-center px-4">
                 {spaces?.data
                   .filter((space) => space.owner.name !== name)
                   .map((space, index) => (

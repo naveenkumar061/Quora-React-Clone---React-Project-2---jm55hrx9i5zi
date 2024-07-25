@@ -4,7 +4,7 @@ import { spaceCovers } from '../../assets/data/SpacesCovers';
 
 function SpaceCard({ space, index }) {
   const { _id, name, image, description } = space;
-  console.log(spaceCovers[0]);
+
   return (
     <Link to={`/spaces/${_id}`}>
       <div className="bg-white dark:bg-[#262626] rounded-2xl w-44 h-56 overflow-hidden text-center">

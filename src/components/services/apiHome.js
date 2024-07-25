@@ -24,7 +24,7 @@ export async function addPost(formData) {
 
 export async function getPosts() {
   try {
-    const response = await fetch(`${url}/quora/post`, {
+    const response = await fetch(`${url}/quora/post?limit=10000`, {
       headers: {
         projectID: projectID,
       },
@@ -124,9 +124,70 @@ export async function addSpace(formData) {
   }
 }
 
+export async function editSpace(formData, spaceID) {
+  try {
+    const response = await fetch(`${url}/quora/channel/${spaceID}`, {
+      method: 'PATCH',
+      headers: {
+        projectID: projectID,
+        Authorization: authToken,
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      throw new Error('Something went wrong while updaing data');
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error updating space:', error);
+    throw new Error(
+      error.message || 'Something went wrong while updating data'
+    );
+  }
+}
+
+export async function deleteSpace(channelID) {
+  try {
+    const response = await fetch(`${url}/quora/channel/${channelID}`, {
+      method: 'DELETE',
+      headers: {
+        projectID: projectID,
+        Authorization: authToken,
+      },
+    });
+    if (response.status === 204) {
+      return true;
+    } else {
+      throw new Error('Unexpected response status: ' + response.status);
+    }
+  } catch (error) {
+    console.error('Error deleting post:', error);
+    return false;
+  }
+}
+
 export async function getSpaces() {
   try {
     const response = await fetch(`${url}/quora/channel?limit=100`, {
+      headers: {
+        projectID: projectID,
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Something went wrong while fetching data');
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching spaces:', error);
+    throw new Error(
+      error.message || 'Something went wrong while fetching data'
+    );
+  }
+}
+
+export async function getUserSpaces(id) {
+  try {
+    const response = await fetch(`${url}/quora/channel/${id}`, {
       headers: {
         projectID: projectID,
       },
