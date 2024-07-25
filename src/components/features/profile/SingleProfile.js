@@ -71,7 +71,7 @@ function SingleProfile() {
   }
 
   return (
-    <div className="pt-[88px] md:pt-14 min-h-screen w-full bg-white dark:bg-[#181818]">
+    <div className="pt-[88px] md:pt-14 min-h-screen w-full bg-white dark:bg-[#181818] dark:text-[#b1b3b6] ">
       <div className="w-full md:w-9/12 mx-auto mt-5">
         {isLoading && <Loader />}
         {!isLoading && (
