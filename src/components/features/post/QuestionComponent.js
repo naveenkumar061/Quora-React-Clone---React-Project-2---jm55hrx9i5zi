@@ -129,7 +129,7 @@ function QuestionComponent({ data }) {
   }, [showCommentSection]);
 
   return (
-    <div className="bg-[#fff] dark:bg-[#262626] border border-[#dee0e1] dark:border-[#262626] rounded p-4 flex flex-col gap-2">
+    <div className="bg-[#fff] dark:bg-[#262626] border border-[#dee0e1] dark:text-[#b1b3b6]  dark:border-[#262626] rounded p-4 flex flex-col gap-2">
       <div className="flex items-center gap-4 h-full">
         <Avatar
           name={postAuthorName}
