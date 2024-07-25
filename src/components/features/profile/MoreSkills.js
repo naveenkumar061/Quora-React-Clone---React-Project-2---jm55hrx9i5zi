@@ -11,7 +11,7 @@ function MoreSkills({
   createdAt,
 }) {
   return (
-    <div className="bg-white dark:bg-[#181818] w-screen h-screen md:h-fit md:w-fit p-4 flex flex-col gap-2 rounded-t-xl md:rounded-3xl text-[13px] md:text-[15px]">
+    <div className="bg-white dark:bg-[#181818] w-screen h-screen md:h-fit md:w-fit p-4 flex flex-col gap-2 rounded-t-xl md:rounded-3xl text-[13px] md:text-[15px] dark:text-[#b1b3b6] ">
       <div>
         <button
           onClick={closeMoreHighlights}
