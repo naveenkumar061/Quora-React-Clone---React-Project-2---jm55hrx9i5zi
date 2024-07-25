@@ -1,5 +1,7 @@
+import SingleProfile from '../features/profile/SingleProfile';
+
 function ProfileDetails() {
-  return <div>ProfileDetails</div>;
+  return <SingleProfile />;
 }
 
 export default ProfileDetails;
