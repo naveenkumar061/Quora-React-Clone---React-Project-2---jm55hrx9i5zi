@@ -11,7 +11,7 @@ import DownVote from '../voting/DownVote';
 import { FiMessageCircle } from 'react-icons/fi';
 import Comments from '../comments/Comments';
 
-function PostComponent({ data }) {
+function PostComponent({ data, type }) {
   const {
     author,
     commentCount,
@@ -137,21 +137,28 @@ function PostComponent({ data }) {
             </div>
           </div>
           <span className="bg-[#636466] w-[2px] h-[2px] rounded-full mt-3"></span>
-          <Link
-            className="text-[#2e69ff] hover:underline font-medium"
-            to={`/profile/${authorId}`}
-          >
-            View Profile
-          </Link>
+          {type !== 'single' && (
+            <Link
+              className="text-[#2e69ff] hover:underline font-medium"
+              to={`/profile/${authorId}`}
+            >
+              View Profile
+            </Link>
+          )}
         </div>
       </div>
       <div>
-        <Link
-          to={`posts/${_id}`}
-          className="text-base font-bold underline-offset-1 hover:underline"
-        >
-          {title}
-        </Link>
+        {type === 'single' && (
+          <div className="text-base font-bold">{title}</div>
+        )}
+        {type !== 'single' && (
+          <Link
+            to={`posts/${_id}`}
+            className="text-base font-bold underline-offset-1 hover:underline"
+          >
+            {title}
+          </Link>
+        )}
         <div>{content}</div>
       </div>
       {finalImage && (

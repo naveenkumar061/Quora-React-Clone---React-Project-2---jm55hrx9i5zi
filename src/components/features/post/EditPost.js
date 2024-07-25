@@ -102,7 +102,7 @@ export default function EditPost({
             <div className="flex items-center w-full">
               <div className="flex flex-wrap max-h-[100px] w-full gap-2">
                 {files?.length === 0 && <div>No File Chosen</div>}
-                {files.length > 0 &&
+                {files?.length > 0 &&
                   files.map((file, index) => (
                     <div key={index} className="relative">
                       <img

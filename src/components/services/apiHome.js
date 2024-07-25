@@ -333,6 +333,53 @@ export async function getComments(postId) {
   }
 }
 
+export async function getUser(uid) {
+  try {
+    const response = await fetch(`${url}/quora/user/${uid}`, {
+      method: 'GET',
+      headers: {
+        projectID: projectID,
+        Authorization: authToken,
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Something went wrong while fetching data');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw new Error(
+      error.message || 'Something went wrong while fetching data'
+    );
+  }
+}
+
+export async function toggleFollow(follow, id) {
+  try {
+    const response = await fetch(`${url}/quora/follow/${id}`, {
+      method: follow ? 'POST' : 'DELETE',
+      headers: {
+        projectID: projectID,
+        Authorization: authToken,
+      },
+    });
+    const data = await response.json();
+
+    if (data.status !== 'success') {
+      throw new Error('Something went wrong while following');
+    }
+
+    return data.message;
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      error.message || 'An unexpected error occurred while following'
+    );
+  }
+}
+
 export async function searchData(query, limited = false) {
   let result = {};
   try {

@@ -83,10 +83,10 @@ function Dropdown({ closeDropdown, type, commentId }) {
       <EditPost
         show={showEditPost}
         setShow={setShowEditPost}
-        oldTitle={postForUser.data.title}
-        oldContent={postForUser.data.content}
+        oldTitle={postForUser?.data?.title}
+        oldContent={postForUser?.data?.content}
         postID={id}
-        images={postForUser.data.images}
+        images={postForUser?.data?.images}
         closeDropdown={closeDropdown}
       />
       <DeletePost
