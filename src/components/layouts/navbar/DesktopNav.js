@@ -27,7 +27,7 @@ function DesktopNav() {
   }
 
   return (
-    <div className="hidden md:flex justify-center items-center gap-4 h-full">
+    <div className="hidden md:flex justify-around items-center px-12 h-full">
       <Link to="home">
         <QuoraLogo className="h-16 w-16 fill-red-700 hover:opacity-50 cursor-pointer" />
       </Link>

@@ -33,7 +33,7 @@ function DProfile({ closeSideBar }) {
 
   return (
     <div
-      className="absolute left-[60%] top-16 bg-white dark:bg-[#262626] transition-transform ease-in flex flex-col w-52 border border-[#dee0e1] dark:border-[#393839] rounded shadow-[0_1px_2px_rgba(0,0,0,.03),0_3px_8px_rgba(0,0,0,.05)] dark:text-white m-4"
+      className="absolute left-[75%] top-16 bg-white dark:bg-[#262626] transition-transform ease-in flex flex-col w-52 border border-[#dee0e1] dark:border-[#393839] rounded shadow-[0_1px_2px_rgba(0,0,0,.03),0_3px_8px_rgba(0,0,0,.05)] dark:text-white m-4"
       onClick={(e) => e.stopPropagation()}
       ref={ref}
     >

@@ -165,7 +165,7 @@ function PostComponent({ data, type }) {
         <img
           src={finalImage}
           alt="img"
-          className="w-full h-64 border border-gray-400 rounded-sm"
+          className="w-[80%] h-64 border border-gray-400 rounded-sm"
         />
       )}
       <div className="flex gap-2 items-center">

@@ -157,7 +157,7 @@ function QuestionComponent({ data }) {
         <img
           src={finalImage}
           alt="img"
-          className="w-full h-64 border border-gray-400 rounded-sm"
+          className="w-[80%] mx-10 h-64 rounded-sm"
         />
       )}
       <div className="flex justify-between relative">
