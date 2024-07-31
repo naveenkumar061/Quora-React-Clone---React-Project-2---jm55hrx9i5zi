@@ -68,7 +68,8 @@ function CreatePost({ show, setShow }) {
       formData.append('content', data.description);
     }
     if (files.length > 0) {
-      for (let file of files) formData.append('images', file);
+      for (let file of files)
+        formData.append('images', URL.createObjectURL(file));
       setFiles([]);
     }
     mutate(formData);
@@ -104,7 +105,11 @@ function CreatePost({ show, setShow }) {
               {files.length > 0 &&
                 files.map((file, index) => (
                   <div key={index} className="relative">
-                    <img src={file} alt="" className="w-10 h-10 object-cover" />
+                    <img
+                      src={URL.createObjectURL(file)}
+                      alt=""
+                      className="w-10 h-10 object-cover"
+                    />
 
                     <button
                       type="button"

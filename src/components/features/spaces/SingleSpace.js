@@ -24,6 +24,8 @@ function SingleSpace() {
   const { spaceForUser, isSpacing } = useSpacesForUser(id);
   const { image, name, description, owner, createdAt } =
     spaceForUser?.data || {};
+
+  console.log(image);
   const { _id, name: ownName } = owner || {};
 
   console.log(spaceForUser?.data);
@@ -50,7 +52,7 @@ function SingleSpace() {
       {!isSpacing && (
         <div className="pt-[88px] md:pt-12 min-h-screen w-full bg-white dark:bg-[#181818] pb-4">
           <div
-            className="w-full bg-no-repeat bg-cover "
+            className="w-full bg-no-repeat bg-cover"
             style={{
               backgroundImage: `url(${require(`../../assets/images/${spaceCovers[coverIndex]}`)})`,
             }}
@@ -135,12 +137,7 @@ function SingleSpace() {
                 (postsForASpace.length === 0 && (
                   <div className="flex flex-col items-center gap-3">
                     <div className="relative w-28 h-28">
-                      <img
-                        src={noPosts}
-                        alt="no posts found"
-                        fill
-                        sizes="112px"
-                      />
+                      <img src={noPosts} alt="no posts found" sizes="112px" />
                     </div>
                     <div className="mx-4 text-center text-[#636466] dark:text-[#B1B3B6] font-bold text-[18px]">
                       No stories

@@ -28,6 +28,7 @@ function CreateSpace({ show, setShow }) {
   const { mutate, isLoading: isCreating } = useMutation({
     mutationFn: addSpace,
     onSuccess: (data) => {
+      console.log(data);
       toast.success('New Space created successfully');
       queryClient.invalidateQueries('spaces');
       setTimeout(() => {
@@ -66,8 +67,14 @@ function CreateSpace({ show, setShow }) {
       formData.append('description', data.description);
     }
     if (files.length > 0) {
-      for (let file of files) formData.append('image', file);
+      for (let file of files) {
+        console.log(file);
+        formData.append('images', URL.createObjectURL(file));
+      }
       setFiles([]);
+    }
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
     }
     mutate(formData);
     closeModal();
@@ -123,7 +130,7 @@ function CreateSpace({ show, setShow }) {
                 className="absolute w-0 h-0"
                 accept="image/*"
                 id="images"
-                {...register('images')}
+                // {...register('images')}
                 onChange={filesBtnHandler}
                 multiple
               />
