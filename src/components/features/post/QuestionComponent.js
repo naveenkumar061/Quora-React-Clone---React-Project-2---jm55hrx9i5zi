@@ -13,7 +13,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import Dropdown from '../../utils/DropDown';
 
 function QuestionComponent({ data }) {
-  const authorised = localStorage.getItem('name');
+  const authorised = sessionStorage.getItem('name');
   const [openPost, setOpenPost] = useState(false);
 
   function handlePost() {
@@ -44,23 +44,23 @@ function QuestionComponent({ data }) {
   const [showCommentSection, setShowCommentSection] = useState(false);
 
   const [localIsLiked, setLocalIsLiked] = useState(() => {
-    const storedValue = localStorage.getItem(`localIsLiked_${_id}`);
+    const storedValue = sessionStorage.getItem(`localIsLiked_${_id}`);
     return storedValue ? JSON.parse(storedValue) : false;
   });
 
   const [localIsDisliked, setLocalIsDisliked] = useState(() => {
-    const storedValue = localStorage.getItem(`localIsDisliked_${_id}`);
+    const storedValue = sessionStorage.getItem(`localIsDisliked_${_id}`);
     return storedValue ? JSON.parse(storedValue) : false;
   });
 
   const addCommentRef = useRef();
 
   useEffect(() => {
-    localStorage.setItem(`localIsLiked_${_id}`, JSON.stringify(localIsLiked));
+    sessionStorage.setItem(`localIsLiked_${_id}`, JSON.stringify(localIsLiked));
   }, [localIsLiked, _id]);
 
   useEffect(() => {
-    localStorage.setItem(
+    sessionStorage.setItem(
       `localIsDisliked_${_id}`,
       JSON.stringify(localIsDisliked)
     );

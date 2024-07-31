@@ -3,7 +3,7 @@ import Modal from '../../utils/Modal';
 import { editSpace } from '../../services/apiHome';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FaRegImages } from 'react-icons/fa';
@@ -16,7 +16,7 @@ function EditSpace({
   oldContent,
   oldImage,
 }) {
-  const [files, setFiles] = useState([oldImage]);
+  const [files, setFiles] = useState([]);
 
   const imagesInput = useRef(null);
 
@@ -32,14 +32,6 @@ function EditSpace({
     },
   });
 
-  useEffect(() => {
-    reset({
-      title: oldTitle,
-      description: oldContent,
-    });
-    setFiles([oldImage]);
-  }, [oldTitle, oldContent, oldImage, reset]);
-
   const queryClient = useQueryClient();
 
   const mutation = useMutation((formData) => editSpace(formData, channelID), {
@@ -50,8 +42,8 @@ function EditSpace({
         toast.success(data.message);
         queryClient.invalidateQueries('spaces');
         reset({
-          title: data.name,
-          description: data.description,
+          title: data.data.name,
+          description: data.data.description,
         });
       } else {
         toast.error('OOPS! Some error occurred.');
@@ -66,7 +58,13 @@ function EditSpace({
     const formData = new FormData();
     formData.append('name', data.title);
     formData.append('description', data.description);
-    formData.append('image', files[0]);
+    if (files.length > 0) {
+      for (let file of files) {
+        console.log(file);
+        formData.append('images', URL.createObjectURL(file));
+      }
+      setFiles([]);
+    }
     mutation.mutate(formData);
     setShow(false);
   }

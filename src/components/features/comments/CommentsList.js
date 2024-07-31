@@ -16,7 +16,7 @@ function CommentsList({
   postAuthorId,
   id,
 }) {
-  const authorised = localStorage.getItem('name');
+  const authorised = sessionStorage.getItem('name');
   const [openComment, setOpenComment] = useState(false);
 
   function handleComment() {

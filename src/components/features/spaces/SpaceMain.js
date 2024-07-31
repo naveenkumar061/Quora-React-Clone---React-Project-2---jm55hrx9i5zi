@@ -9,7 +9,7 @@ import SpaceCard from './SpaceCard';
 function SpaceMain() {
   const { isLoading, spaces } = useSpaces();
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const name = localStorage.getItem('name');
+  const name = sessionStorage.getItem('name');
   console.log(spaces?.data);
 
   return (

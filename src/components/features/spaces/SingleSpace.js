@@ -16,7 +16,7 @@ import PostComponent from '../post/PostComponent';
 
 function SingleSpace() {
   const { id } = useParams();
-  const authorisedName = localStorage.getItem('name');
+  const authorisedName = sessionStorage.getItem('name');
   const [coverIndex] = useState(Math.floor(Math.random() * 5));
   const [showEditBox, setShowEditBox] = useState(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);

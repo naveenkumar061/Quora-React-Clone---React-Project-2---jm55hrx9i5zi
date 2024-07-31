@@ -13,9 +13,9 @@ function MProfile({ closeSideBar, isSideBarVisible }) {
   }
 
   function handleLogout() {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('name');
-    localStorage.removeItem('email');
+    sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('name');
+    sessionStorage.removeItem('email');
     navigate('/login');
     closeSideBar();
   }

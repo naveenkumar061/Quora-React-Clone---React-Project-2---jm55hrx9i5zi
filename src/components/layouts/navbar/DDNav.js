@@ -5,7 +5,7 @@ import { useState } from 'react';
 import MProfile from './MProfile';
 
 function DDNav() {
-  const name = localStorage.getItem('name');
+  const name = sessionStorage.getItem('name');
 
   const [openSidebar, setOpenSidebar] = useState(false);
 

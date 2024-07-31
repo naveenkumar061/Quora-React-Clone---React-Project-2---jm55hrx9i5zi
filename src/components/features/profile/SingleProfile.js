@@ -18,7 +18,7 @@ import noPosts from '../../assets/images/end-of-page.webp';
 
 function SingleProfile() {
   const { id } = useParams();
-  const authorised = localStorage.getItem('name');
+  const authorised = sessionStorage.getItem('name');
   const [showMoreHighlights, setShowMoreHighlights] = useState(false);
 
   const { profileForUser, isLoading } = useProfileForUser(id);

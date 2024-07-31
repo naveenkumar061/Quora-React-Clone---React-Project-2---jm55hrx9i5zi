@@ -1,8 +1,8 @@
 import Avatar from 'react-avatar';
 
 function Profile() {
-  const name = localStorage.getItem('name');
-  const email = localStorage.getItem('email');
+  const name = sessionStorage.getItem('name');
+  const email = sessionStorage.getItem('email');
 
   return (
     <div className="dark:bg-[#171717] dark:text-white flex flex-col justify-center items-center px-4 py-8 md:px-16 md:py-12">

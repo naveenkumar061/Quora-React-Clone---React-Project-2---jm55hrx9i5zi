@@ -14,7 +14,7 @@ const btn =
 function Comments({ data, addCommentRef }) {
   const { _id, author: postAuthor } = data;
 
-  const name = localStorage.getItem('name');
+  const name = sessionStorage.getItem('name');
 
   const queryClient = useQueryClient();
 

@@ -11,7 +11,7 @@ import DProfile from './DProfile';
 function DesktopNav() {
   const [openPopup, setOpenPopup] = useState(false);
   const [isCreatePostVisible, setIsCreatePostVisible] = useState(false);
-  const name = localStorage.getItem('name');
+  const name = sessionStorage.getItem('name');
 
   function showCreatePost() {
     setIsCreatePostVisible(true);

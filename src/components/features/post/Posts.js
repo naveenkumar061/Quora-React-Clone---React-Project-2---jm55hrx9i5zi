@@ -8,7 +8,7 @@ import PostComponent from './PostComponent';
 import CreatePost from './CreatePost';
 
 function Posts() {
-  const name = localStorage.getItem('name');
+  const name = sessionStorage.getItem('name');
   const [isCreatePostVisible, setIsCreatePostVisible] = useState(false);
 
   function showCreatePost() {

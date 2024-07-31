@@ -17,7 +17,7 @@ export default function EditPost({
   images,
   closeDropdown,
 }) {
-  const [files, setFiles] = useState(images);
+  const [files, setFiles] = useState([]);
   const imagesInput = useRef(null);
 
   const {
@@ -57,8 +57,15 @@ export default function EditPost({
   function onSubmit(data) {
     const formData = new FormData();
     formData.append('title', data.title);
-    formData.append('content', data.content);
-    formData.append('images', files[0]);
+    if (data.content) {
+      formData.append('content', data.content);
+    }
+    if (files.length > 0) {
+      for (let file of files) {
+        formData.append('images', URL.createObjectURL(file));
+      }
+      setFiles([]);
+    }
 
     mutation.mutate(formData);
     setShow(false);
